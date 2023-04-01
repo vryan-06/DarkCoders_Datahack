@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Login-{{params['app_name']}}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+    <link href="{{ url_for('static' , filename='css/signin.css') }}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <form class="form-signin" method="post" action="/predict">
+        <div class="card">
+            <div class="card-body">
+                <img class="mb-4" src="{{ url_for('static' , filename='/img/logo.png') }}" alt="" width="120"
+                    height="120">
+                <h1 class="h3 mb-3 font-weight-normal">Carzoo</h1>
+                <label for="year" class="sr-only">Year of make:-</label>
+                <input type="text" id="year" name="Year" class="form-control" placeholder="Year of make" required
+                    autofocus>
+                <label for="kms" class="sr-only">Kilometers_Driven</label>
+                <input type="text" id="kms" name="Kilometers_Driven" class="form-control" placeholder="Enter kilometers driven" required
+                    autofocus>
+                <label for="Mil" class="sr-only">Mileage</label>
+                <input type="text" id="Mil" name="Mileage" class="form-control" placeholder="Enter mileage" required
+                    autofocus>
+                <label for="eng" class="sr-only">Engine</label>
+                <input type="text" id="eng" name="Engine" class="form-control" placeholder="Enter Engine" required
+                    autofocus>
+                <label for="powe" class="sr-only">Power</label>
+                <input type="text" id="powe" name="Power" class="form-control" placeholder="Enter power here" required autofocus>
+                <label for="sea" class="sr-only">Seats</label>
+                <input type="text" id="sea" name="Seats" class="form-control" placeholder="Enter seats here" required autofocus>
+                <label for="own" class="sr-only">Owner Type:</label>
+                <input type="text" id="own" name="Owner_Type" class="form-control" placeholder="Enter Owner type here" required autofocus>
+                <label for="loca" class="sr-only">Location:</label>
+                <input type="text" id="loca" name="Location" class="form-control" placeholder="Enter Location here" required autofocus>
+                <label for="fue" class="sr-only">Fuel Type:</label>
+                <input type="text" id="fue" name="Fuel_Type" class="form-control" placeholder="Enter Fuel type here" required autofocus>
+                <label for="trans" class="sr-only">Tranmission:</label>
+                <input type="text" id="trans" name="Transmission" class="form-control" placeholder="Enter Transmission type here" required autofocus>
+                <label for="pic" class="sr-only">Input image:</label> <input type="file" id="pic" name="pic" class="form-control" autofocus>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+                <p class="mt-5 mb-3 text-muted">&copy; {{params['app_name']}} @2022</p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

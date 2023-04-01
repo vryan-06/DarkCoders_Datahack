@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import sys
 import os
+import json
 import pickle
 import numpy as np
 import pandas as pd
@@ -12,6 +13,10 @@ from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
 CORS(app)
 curr_loc = os.path.dirname(os.path.realpath(__file__))
+
+with open("config.json", "r") as c:
+    params = json.load(c)['params']
+
 
 model = pickle.load(open(str(curr_loc)+'/ada_reg_xg1.pkl', 'rb'))
 print("Model has been loaded")
@@ -41,7 +46,7 @@ n_samples_seen=2728
 
 @app.route("/")
 def index():
-    return "<h1> Used Car Price Predictior </h1>"
+    return render_template("login.html", params=params)
 
 #  ['Year', 'Kilometers_Driven', 'Mileage', 'Engine', 'Power', 'Seats',
     # 'Owner_Type_Encoded', 'Location_Ahmedabad',
@@ -55,11 +60,11 @@ def index():
 def predict():
     if(model):
         try:
-            reqData = request.json
+            reqData = dict(request.form)
             #  reqData = {'Year': 2015, 'Kilometers_Driven': 45000, 'Mileage': '18.2 kmpl', 'Engine': '1968 CC',
             #            'Power': '141 bhp', 'Seats': 5, 'Owner_Type': 'First Owner', 'Location': 'Mumbai',
             #            'Fuel_Type': 'Diesel', 'Transmission': 'Manual'}
-            
+
             if reqData['Owner_Type']=="First":
                 val = 0
             elif reqData['Owner_Type']=="Second":

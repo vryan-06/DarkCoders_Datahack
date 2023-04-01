@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> List of all the playlists submitted by <strong>{{user["name"]}}</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <th> Course Name </th>
+                                    <th> Course Playlist </th>
+                                    <th> Converted </th>
+                                </thead>
+                                <tbody>
+                                    {% for course in user["courses"] %}
+                                    <tr>
+                                        <td>{{ course["courseName"] }}</td>
+                                        <td>
+                                            <a href="{{ course['coursePlaylist']}}" target="_blank">
+                                                {{ course["coursePlaylist"] }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if course["isApproved"] %}
+                                            <a href="/approveCourse?email={{user['email']}}&&index={{user['courses'].index(course)}}&&value=0"> <button type="button" class="btn btn-success"><span class="material-icons"
+                                                    style="color: white;">check_circle</span>Approved</button> </a>
+                                            {% else %}
+                                            <a href="/approveCourse?email={{user['email']}}&&index={{user['courses'].index(course)}}&&value=1"> <button type="button" class="btn btn-default"> Approve Course </button>
+                                            {% endif %}
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
