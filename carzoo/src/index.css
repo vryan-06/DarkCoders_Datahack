@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-padding-top: 100px;
+        scroll-behavior: smooth;
+    }
+}

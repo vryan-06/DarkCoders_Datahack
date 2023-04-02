@@ -40,12 +40,13 @@ def get_car_features(query):
             data = row.find_all("td")
             car_features[data[0].getText()] = data[1].getText()
 
-        car_features['price'] = round_to_lakhs(price)
+        car_features['Price'] = "Rs. " + str(round_to_lakhs(price)) + " lakhs"
 
         return car_features
 
 
-query = "site:cardekho.com hyundai creta 1.6 SX petrol"
-# query = "site:cardekho.com wagon r 2020"
-res = get_car_features(query)
-print(res)
+if __name__ == "__main__":
+    query = "site:cardekho.com hyundai creta 1.6 SX petrol"
+    # query = "site:cardekho.com wagon r 2020"
+    res = get_car_features(query)
+    print(res)
