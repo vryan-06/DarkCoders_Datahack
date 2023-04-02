@@ -6,6 +6,7 @@ import os
 import json
 import pickle
 import numpy as np
+
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
@@ -104,8 +105,8 @@ def predict():
             del reqData['Transmission']
 
             df = pd.DataFrame([reqData])
-            df = np.array(df.astype("float64"))
-
+            df = np.array(df)
+            df = df.astype(np.float64)
             scaler = StandardScaler()
             scaler.mean_ = mean
             scaler.scale_ = std
@@ -114,8 +115,8 @@ def predict():
             
             inp = scaler.transform(df)
             prediction = model.predict(inp)
-
-            return jsonify({"predicted" : list(prediction)})
+            print(prediction)
+            return jsonify({"predicted" : str(prediction)})
         except:
             return jsonify({"error" : traceback.format_exc()})
     else:
