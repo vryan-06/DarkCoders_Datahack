@@ -46,5 +46,6 @@ def get_car_features(query):
 
 
 query = "site:cardekho.com hyundai creta 1.6 SX petrol"
+# query = "site:cardekho.com wagon r 2020"
 res = get_car_features(query)
 print(res)
