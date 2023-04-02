@@ -18,7 +18,7 @@
 
 <body class="text-center">
 
-    <form class="form-signin" method="post" action="/predict">
+    <form id="prediction-form" class="form-signin" method="post">
         <div class="card">
             <div class="card-body">
                 <img class="mb-4" src="{{ url_for('static' , filename='/img/logo.png') }}" alt="" width="120"
@@ -49,12 +49,33 @@
                 <label for="trans" class="sr-only">Tranmission:</label>
                 <input type="text" id="trans" name="Transmission" class="form-control" placeholder="Enter Transmission type here" required autofocus>
 <!--                <label for="pic" class="sr-only">Input image:</label> <input type="file" id="pic" name="pic" class="form-control" autofocus>-->
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Get Prediction</button>
 
                 <p class="mt-5 mb-3 text-muted">&copy; {{params['app_name']}} @2022</p>
             </div>
         </div>
     </form>
-</body>
+<script>
+        document.querySelector('#prediction-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // prevent the form from submitting normally
 
+            // get the form data
+            let formData = new FormData(event.target);
+
+            // send a POST request to the server with the form data
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // parse the JSON response
+            .then(data => {
+                // display an alert with the predicted value
+                alert(`Predicted value: ${data.predicted}Lakhs`);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        });
+    </script>
+</body>
 </html>

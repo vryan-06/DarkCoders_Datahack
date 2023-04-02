@@ -116,7 +116,7 @@ def predict():
             inp = scaler.transform(df)
             prediction = model.predict(inp)
             print(prediction)
-            return jsonify({"predicted" : str(prediction)})
+            return jsonify({"predicted" : str(prediction[0])})
         except:
             return jsonify({"error" : traceback.format_exc()})
     else:
